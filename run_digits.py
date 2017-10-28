@@ -154,7 +154,7 @@ def main(prefix, gamma, m, alltestm, kerneltype, do_output_pics):
     outfig = None
     critoutfig = None
 
-    k = 0 # number of criticisms
+    k = 100 # number of criticisms
 
     if do_output_pics == 1:
         outfig = prefix+'images/'+str(m)+'/protos'
@@ -162,7 +162,7 @@ def main(prefix, gamma, m, alltestm, kerneltype, do_output_pics):
 
         Helper.dir_exists(outfig)
 
-    selected, critselected, digitsdat =  run(prefix + 'usps', gamma, m, k, kerneltype, outfig, critoutfig, prefix + 'usps.t')
+    selected, critselected, digitsdat =  run(prefix + 'mnist', gamma, m, k, kerneltype, outfig, critoutfig, prefix + 'mnist.t')
 
     test_1NN(digitsdat, selected, alltestm)
 
@@ -171,13 +171,14 @@ def main(prefix, gamma, m, alltestm, kerneltype, do_output_pics):
 
 if __name__ == '__main__':
     import os
-    prefix = os.getcwd() + '/data/'
+    prefix = os.getcwd() + '/mnist/'
+    print prefix
     gamma = 0.026 # kernel parameter, obtained after cross validation
 
     #m= 4433 # total number of prototypes to select
     #alltestm =  np.array([4433,  3772, 3135, 2493, 1930, 1484, 1145, 960, 828, 715, 643, 584, 492, 410, 329, 286, 219, 185, 130, 110]) # test using these number of prototypes
 
-    m = 410  # total number of prototypes to select
+    m = 200  # total number of prototypes to select
     alltestm = np.array(
         [410, 329, 286, 219, 185, 130,
          110])  # test using these number of prototypes

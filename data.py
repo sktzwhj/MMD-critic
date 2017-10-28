@@ -78,8 +78,9 @@ class Data:
         self.y = self.y[sortind]
 
         for i in np.arange(10):
-            j = i+1
+            j = i
             ind = np.where(self.y == j)[0]
+           
             startind = np.min(ind)
             endind = np.max(ind)+1
             self.kernel[startind:endind, startind:endind ] = rbf_kernel(self.X[startind:endind, :], gamma=self.gamma)
@@ -118,7 +119,7 @@ class Data:
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
-    file = 'data/usps'
+    file = 'mnist_full/mnist_full'
     data=load_svmlight_file(file)
     X = data[0].todense()
     print data[1]
